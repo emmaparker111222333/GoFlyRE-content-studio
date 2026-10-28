@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>GoFlyRE | Aviation Content Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#f7f2e8;--cr:#efe7d6;--ink:#3a3128;--mut:#7a6f60;--sage:#7f9171;--navy:#3d4a63;--gold:#b08d57;--line:#ddd2bd;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;margin:0}
+header{padding:40px 5vw 18px;border-bottom:1px solid var(--line);text-align:center}
+.eyebrow{letter-spacing:.3em;font-size:11px;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(30px,5vw,50px);margin:6px 0 2px}.sub{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:19px;color:var(--mut)}
+nav{display:flex;gap:6px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn,nav button{border:1px solid var(--line);background:#fffdf8;border-radius:99px;padding:7px 16px;cursor:pointer}
+.btn:hover,nav button:hover{border-color:var(--sage)}nav button.on,.btn.on,.btn.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+main{max-width:1200px;margin:0 auto;padding:26px 5vw 50px}
+.grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}.g6{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:#fffdf8;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(90,70,40,.06)}
+.card h2{font-size:25px;margin-bottom:10px}.card h2:after{content:"";display:block;width:34px;height:2px;background:var(--gold);margin-top:6px}
+.stat{text-align:center}.stat b{font:500 38px 'Cormorant Garamond',serif;display:block;color:var(--navy)}.stat span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.bar{height:9px;background:var(--cr);border-radius:9px;position:relative;margin:4px 0 10px}.bar i{display:block;height:100%;border-radius:9px}.bar u{position:absolute;top:-4px;width:2px;height:17px;background:var(--ink)}
+.row{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.tool{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}.tool .sp{flex:1}
+input,select,textarea{border:1px solid var(--line);background:#fffdf8;border-radius:10px;padding:7px 10px;width:100%}.tool input,.tool select{width:auto}
+.cal{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.dh{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);text-align:center}
+.day{min-height:104px;background:#fffdf8;border:1px solid var(--line);border-radius:10px;padding:5px;position:relative}.day.off{background:transparent;border-style:dashed}.day.td{border-color:var(--gold)}
+.day>b{font:500 17px 'Cormorant Garamond',serif}.day .add{position:absolute;right:5px;top:3px;border:0;background:none;color:var(--mut);cursor:pointer}
+.chip{font-size:11.5px;line-height:1.3;border-left:4px solid;background:var(--cr);border-radius:6px;padding:3px 6px;margin-top:4px;cursor:pointer;overflow:hidden}.chip small{display:block;color:var(--mut)}
+.chip.need{outline:2px solid var(--gold)}.wk .day{min-height:260px}
+.tag{display:inline-block;font-size:11px;padding:1px 9px;border-radius:99px;border:1px solid;margin-right:4px;white-space:nowrap}
+.st{font-size:11px;padding:1px 9px;border-radius:99px;background:var(--cr)}.st.a{background:#f3e3bd}
+.item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}.item:last-child{border:0}
+.mo{position:fixed;inset:0;background:rgba(60,48,35,.35);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:4vh 3vw;z-index:9}
+.md{background:var(--bg);border-radius:18px;max-width:820px;width:100%;padding:24px}.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.fg label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}.fg .w{grid-column:1/-1}
+.spot{height:130px;border:1px dashed var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--mut);background:var(--cr);margin-bottom:8px;text-align:center}
+.note{font-size:12px;color:var(--mut);margin-top:26px;text-align:center}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:8px 18px;border-radius:99px;z-index:20}
+@media(max-width:700px){.cal{gap:3px}.day{min-height:70px;padding:3px}.chip small{display:none}.wk .cal{grid-template-columns:1fr}.wk .day{min-height:0}}
+@media print{header nav,.tool,.add,.note,.btn{display:none}body{background:#fff}.card,.day{box-shadow:none}.chip{background:#fff;border:1px solid #ccc;border-left-width:4px}}
+</style></head><body>
+<header><div class="eyebrow">GoFlyRE · Airport Property For Sale</div><h1>GoFlyRE | Aviation Content Studio</h1><div class="sub">An Editorial Planner for Aviation, Property &amp; Community</div>
+<nav><button data-t="dash">Dashboard</button><button data-t="cal">Calendar</button><button data-t="lib">Idea Library</button></nav></header>
+<main id="app"></main>
+<script>
+const $=s=>document.querySelector(s),e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const CAT={E:['Educational','#6f8460'],R:['Property Features','#3d4a63'],C:['Community','#b08d57'],S:['Safety','#a4624f'],P:['Brand','#80708f']};
+const PL={F:'Facebook',I:'Instagram',T:'TikTok',Y:'YouTube',M:'Multi-platform'};
+const FM={C:'Carousel',R:'Reel',G:'Static graphic',S:'Story',H:'YouTube Short',V:'Long-form video',P:'Community poll'};
+const ST=['Idea','Drafting','Designing','Submitted for Review','Changes Requested','Approved','Scheduled','Published'],OW=['Tabitha','Frank','Team'];
+const NEED=['Submitted for Review','Changes Requested'];
+const TAG={E:'#AirparkLiving #AviationRealEstate #GoFlyRE #PilotLife',R:'#HangarHome #AirparkHomes #AviationProperty #GoFlyRE',C:'#PilotLife #FlyIn #AviationCommunity #GoFlyRE',S:'#AviationSafety #HangarSafety #PilotLife #GoFlyRE',P:'#GoFlyRE #AviationRealEstate #AirportPropertyForSale'};
+const CTA={E:'Save this for your next property search.',R:'Message us for details or share with a pilot friend.',C:'Tell us in the comments!',S:'Share with a fellow aircraft owner.',P:'Visit the GoFlyRE website [add link] and join the Airport Property For Sale group.'};
+const LIB=`EIC|Airpark buying checklist|What do most buyers miss?|Five-point pre-offer checklist carousel
+EFC|Owned vs. leased hangar land|Do you own the dirt under it?|Compare ownership structures
+ETR|Reading airport identifiers|What does that code really mean?|Quick explainer of identifier formats
+EIC|Runway specs decoded|Length, width, surface, lighting|Plain-language runway data guide
+EYV|Hangar maintenance costs|The cost nobody budgets for|Roof, door, slab and utilities walkthrough
+EFG|Financing aviation property|Lenders see hangars differently|Basics only; recommend a qualified lender
+EIC|Airpark HOA rules|Can you add a hangar door?|Typical covenants explained
+ETH|Through-the-fence access|What is a TTF agreement?|60-second explainer
+EYV|How pilots evaluate airparks|Seven things to check on every visit|Site-visit walkthrough
+EFC|Buyer mistakes to avoid|Skipping the survey costs more|Common errors, ranked
+EIC|Hangar door types|Bi-fold, hydraulic or sliding?|Pros and cons carousel
+ETR|Hangar size vs. wingspan|Will your aircraft actually fit?|Measurement demo
+EFG|Fuel storage on property|Check local rules first|Awareness only; refer to local authorities
+EYV|Airspace near your airpark|Why it matters at home|Simple airspace primer
+EIC|Utilities at airparks|Power, water, internet by the runway|Questions to ask providers
+EFC|Easements explained|Who can cross your land?|Plain-language easement guide
+EIC|Surveys for airparks|Approach surfaces matter|Why aviation surveys differ
+ETH|Hangar heating options|Keep the shop warm, cheaply|Quick comparisons
+EYH|Taxiway width basics|Will your wings clear?|Short explainer
+EIC|Pilot-friendly home features|A wide garage isn’t enough|Feature list carousel
+ETR|Private vs. public-use airports|Who can land here?|Explainer reel
+RIC|Hangar home vs. traditional home|Where does the plane sleep?|Side-by-side comparison
+RYV|Airpark community tour|Walk the taxiway with us|Neighborhood tour video
+RFG|Featured listing [placeholder]|Add real listing details only|Template with image slot
+RIR|Hangar design ideas|Layouts built around the aircraft|Gallery of amenities
+RFC|Market insight [add data]|Insert verified local data|Data post; cite sources
+RTH|Hangar tour in 30 seconds|Would you live here?|Fast vertical tour
+RIC|Compare two airparks|Grass vs. paved communities|Comparison carousel
+RFG|New listing showcase|Just listed [placeholder]|Announcement template
+RYV|Behind the scenes of a listing shoot|How we capture an airpark|Photography process
+RIR|Unique access properties|Taxi from the kitchen to the runway|Spotlight on access types
+RFC|Airpark amenities|Fly-in dining, fuel, shops|Amenity roundup
+RIC|Buying tip: inspect the hangar|Concrete, roof, drainage|Inspection checklist
+RTR|Dream hangar builds|Build vs. buy|Inspiration reel
+RTH|Hangar amenities pilots love|Heat, wash bay, lounge|Highlights short
+RIC|Airpark lifestyle snapshot|Mornings on the field|Photo story
+CFP|Poll: grass or paved?|Pilots, pick a side|Simple poll
+CFP|Would you rather|Hangar home or lakefront?|Fun hypothetical
+CTR|A day in airpark life|Wake up. Fly. Repeat.|Resident lifestyle reel
+CFC|Favorite fly-in destinations|Where’s your best fly-in meal?|Comment prompt
+CIG|Member photo feature|Your runway at sunrise|Community photo
+CIS|Story poll|Taildragger or tricycle?|Story sticker poll
+CFG|Hangar inspiration|Show us your hangar wall|Photo thread
+CYH|Pilot lifestyle story|How I found my airpark|Interview short
+CFC|Member highlight|Meet an airpark neighbor|Spotlight Q&amp;A
+CIC|Runway sunrise gallery|Golden hour on the ramp|Photo carousel
+SFG|Hangar fire prevention|Check your extinguishers|Awareness; cite FAA/NFPA guidance
+SIC|Aircraft storage mistakes|Fuel, moisture, rodents|Common storage errors
+SFC|Taxiway awareness|Know your hold-short lines|Educational; follow FAA procedures
+SIR|Preflight awareness|The check that matters|Reminder only; use official checklists
+SFG|Weather prep for owners|Tie-downs and hangar doors|Preparedness basics
+SYV|Safety when buying property|Obstructions and approach paths|Consult aviation professionals
+SIG|Runway incursion awareness|Know before you taxi|Link to FAA resources
+PFG|How GoFlyRE helps|Buyers and sellers, connected|Soft service intro
+PIS|Submit your listing|Own aviation property?|Invite owners to submit
+PFC|Airport Property For Sale group|38K pilots and counting|Community welcome
+PIC|Meet GoFlyRE|What we do and why|Brand story
+PFG|Aviation professionals, connect|Agents, lenders, inspectors|Invite pros to join
+PYV|Why GoFlyRE exists|The fly-in listing gap|Founder story (supply details)
+PTR|GoFlyRE website tour|Find your airpark|Quick site walkthrough`.split('\n').map(l=>{const[c,t,h,d]=l.split('|');return{cat:c[0],plat:c[1],fmt:c[2],topic:t,hook:h,desc:d}});
+const SD=`2|EIC|09:00|5 Things to Check Before Buying an Airpark Home|Most buyers miss number three|Approved|Tabitha
+3|RFC|12:00|Hangar Home vs. Traditional Home: What’s Different?|Where does the plane sleep?|Scheduled|Frank
+5|ETR|17:00|Understanding Runway Access When Buying Property|Can you actually reach the runway?|Designing|Team
+6|CFP|11:00|Pilot Poll: Grass Runway or Paved Runway?|Pilots, pick a side|Approved|Tabitha
+7|SFG|10:00|Aviation Safety: Hangar Fire Prevention Basics|Check your extinguishers today|Submitted for Review|Frank
+9|EYV|08:00|Is Owning an Aircraft Hangar Worth It?|The math pilots rarely run|Drafting|Frank
+10|RIC|18:00|What Makes an Aviation Community Desirable?|It’s more than a runway|Designing|Team
+12|EFG|12:00|3 Questions Every Aviation Property Buyer Should Ask|Ask these before you offer|Changes Requested|Tabitha
+13|CTR|19:00|A Day in the Life of an Airpark Resident|Wake up. Fly. Repeat.|Idea|Team
+14|EIC|09:00|Understanding Airpark HOA Rules|Can you add a hangar door?|Drafting|Tabitha
+16|RFG|11:00|How to Prepare Your Aviation Property for Sale|Sellers: start here|Idea|Frank
+17|SIC|17:00|Common Aircraft Storage Mistakes|Fuel, moisture, rodents|Submitted for Review|Tabitha
+19|EYH|08:00|What to Know About Private Runway Ownership|Who maintains the runway?|Idea|Frank
+20|RIC|12:00|Why Aviation Properties Appeal to Pilot Homebuyers|Your hobby, at home|Drafting|Team
+21|PFG|10:00|How GoFlyRE Helps Connect Aviation Property Buyers and Sellers|Buyers and sellers, connected|Designing|Tabitha
+23|CFP|11:00|Would You Rather: Hangar Home or Lakefront?|Choose wisely|Idea|Team
+24|ETR|18:00|Owned Land vs. Leased Hangar Land|Do you own the dirt under it?|Drafting|Frank
+26|RIR|17:00|Property Spotlight: [Placeholder Listing]|Add real listing details only|Idea|Frank
+27|EFC|09:00|Airport Identifiers and Runway Specs Explained|What does that code mean?|Idea|Tabitha
+28|CIG|12:00|Member Photo Feature: Runway at Sunrise|Share yours in the comments|Idea|Team
+29|EYV|08:00|Aviation Property Financing Basics|Lenders see hangars differently|Idea|Frank
+30|PIS|11:00|Own Aviation Property? Submit Your Listing|Invite owners to submit|Idea|Tabitha`.split('\n');
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),pd=s=>new Date(s+'T12:00'),uid=()=>Math.random().toString(36).slice(2,9);
+const EMPTY={hook:'',concept:'',visual:'',caption:'',tags:'',cta:'',assets:'',notes:'',feedback:'',reach:'',views:'',comments:'',shares:'',saves:'',eng:''};
+function fill(p){p=Object.assign({id:uid()},EMPTY,p);const pn={F:'Conversational, discussion-led tone.',I:'Visual-first and swipeable.',T:'Vertical, with the hook in the first 2 seconds.',Y:'Searchable title, educational pacing.',M:'Repurpose with platform-specific captions.'}[p.plat];
+p.concept=p.concept||`${FM[p.fmt]} on “${p.topic}”. ${pn} Open with the hook, give 3–5 clear takeaways, close with a question.`;
+p.visual=p.visual||'Ivory layout, serif headline, aviation photography. Use placeholders until real assets are supplied.';
+p.caption=p.caption||`${p.hook}\n\n${p.topic}: what would you add? Tell us below.`;p.tags=p.tags||TAG[p.cat];p.cta=p.cta||CTA[p.cat];
+p.assets=p.assets||'Team photos or permissioned sources; no invented listing data.';
+p.notes=p.notes||(p.cat=='S'?'Safety: reference FAA guidance and recommend consulting qualified aviation professionals.':'');return p}
+function seed(){const n=new Date();let y=n.getFullYear(),m=n.getMonth()+1;if(m>11){m=0;y++}
+const W=[];for(let i=1,nd=new Date(y,m+1,0).getDate();i<=nd;i++){const w=new Date(y,m,i).getDay();if(w&&w<6)W.push(i)}
+return{p:SD.map((l,i)=>{const[d,c,t,topic,hook,status,owner]=l.split('|');return fill({date:iso(new Date(y,m,W[Math.floor(i*W.length/SD.length)])),cat:c[0],plat:c[1],fmt:c[2],time:t,topic,hook,status,owner})}),t:{E:40,R:25,C:15,S:10,P:10},g:['22 posts per month','Reach +10% month over month','Engagement rate 4%','Saves: 150 per month']}}
+let S;try{S=JSON.parse(localStorage.getItem('gofly-studio')||'null')}catch(x){}if(!S)S=seed();
+const wk=d=>{const x=pd(d),w=x.getDay();if(w==0||w==6){x.setDate(x.getDate()+(w==6?2:1));return iso(x)}return d};S.p.forEach(p=>p.date=wk(p.date));
+const save=()=>{try{localStorage.setItem('gofly-studio',JSON.stringify(S))}catch(x){}};
+let V={tab:'dash',mode:'month',d:S.p.length?pd(S.p[0].date):new Date(),q:'',c:'',pl:'',ed:null};
+const tag=c=>`<span class="tag" style="color:${CAT[c][1]};border-color:${CAT[c][1]}">${CAT[c][0]}</span>`,st=s=>`<span class="st ${NEED.includes(s)?'a':''}">${s}</span>`;
+const byId=id=>S.p.find(p=>p.id==id),n=(...s)=>S.p.filter(p=>s.includes(p.status)).length;
+const vis=()=>S.p.filter(p=>(!V.c||p.cat==V.c)&&(!V.pl||p.plat==V.pl)&&(!V.q||(p.topic+p.hook+p.caption).toLowerCase().includes(V.q.toLowerCase()))).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+const chip=p=>`<div class="chip ${NEED.includes(p.status)?'need':''}" draggable="true" ondragstart="event.dataTransfer.setData('t','${p.id}')" onclick="edit('${p.id}')" style="border-color:${CAT[p.cat][1]}"><b>${e(p.topic)}</b><small>${p.time} · ${PL[p.plat]} · ${FM[p.fmt]} · ${p.status}</small></div>`;
+function go(t){V.tab=t;render()}
+function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==V.tab));$('#app').innerHTML={dash,cal,lib}[V.tab]()+`<p class="note">Changes save in this browser only (local storage) and do not sync between people. For shared editing, use CSV export, or connect a cloud backend later.</p>`}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.t));
+function dash(){const T=S.p.length||1,tot=Object.values(S.t).reduce((a,b)=>a+ +b,0);const now=iso(new Date());
+let up=S.p.filter(p=>p.date>=now&&p.status!='Published').sort((a,b)=>a.date.localeCompare(b.date));if(!up.length)up=[...S.p].sort((a,b)=>a.date.localeCompare(b.date));
+const need=S.p.filter(p=>NEED.includes(p.status)),pk=up.filter(p=>'ER'.includes(p.cat)&&p.status!='Idea').slice(0,3);
+const li=p=>`<div class="item" onclick="edit('${p.id}')"><div style="flex:1"><b>${e(p.topic)}</b><div class="row" style="justify-content:flex-start;gap:6px;margin-top:3px">${tag(p.cat)}${st(p.status)}<span style="color:var(--mut)">${p.date} · ${p.time} · ${PL[p.plat]} · ${p.owner}</span></div></div></div>`;
+const sum=k=>S.p.reduce((a,p)=>a+(parseFloat(p[k])||0),0);
+return`<div class="grid g6"><div class="card stat"><b>${S.p.length}</b><span>Total planned</span></div><div class="card stat"><b>${n('Idea','Drafting','Designing')}</b><span>In progress</span></div><div class="card stat"><b>${n('Submitted for Review','Changes Requested')}</b><span>Awaiting approval</span></div><div class="card stat"><b>${n('Approved')}</b><span>Approved</span></div><div class="card stat"><b>${n('Scheduled')}</b><span>Scheduled</span></div><div class="card stat"><b>${n('Published')}</b><span>Published</span></div></div><br>
+<div class="grid g2"><div class="card"><h2>Content mix vs. target</h2>${Object.keys(CAT).map(c=>{const a=S.p.filter(p=>p.cat==c).length/T*100,t=S.t[c]/tot*100;return`<div class="row"><span>${CAT[c][0]}</span><span>${a.toFixed(0)}% planned · target <input type="number" min="0" value="${S.t[c]}" onchange="S.t['${c}']=+this.value;save();render()" style="width:60px;padding:2px 6px">%</span></div><div class="bar"><i style="width:${a}%;background:${CAT[c][1]}"></i><u style="left:${t}%"></u></div>`}).join('')}<div class="row" style="color:var(--mut)">Vertical line = target. Targets are adjustable planning guides.</div></div>
+<div class="card"><h2>Needs Tabitha &amp; Frank</h2>${need.length?need.map(li).join(''):'<p style="color:var(--mut)">Nothing waiting for review.</p>'}</div></div><br>
+<div class="grid g2"><div class="card"><h2>Upcoming schedule</h2>${up.slice(0,6).map(li).join('')}</div><div class="card"><h2>Platform distribution</h2>${Object.keys(PL).map(k=>{const c=S.p.filter(p=>p.plat==k).length;return`<div class="row"><span>${PL[k]}</span><span>${c}</span></div><div class="bar"><i style="width:${c/T*100}%;background:var(--sage)"></i></div>`}).join('')}</div></div><br>
+<div class="grid g3"><div class="card"><h2>Editor’s picks</h2>${pk.map(li).join('')||'<p style="color:var(--mut)">Add posts to see picks.</p>'}</div>
+<div class="card"><h2>This month in aviation</h2><p style="color:var(--mut);font-size:13px">Prompts only; add verified dates and news yourself.</p><ul><li>Seasonal weather and hangar preparation</li><li>Local fly-ins and airshows [add confirmed dates]</li><li>FAA notices worth sharing [verify at faa.gov]</li><li>Aviation awareness days [verify]</li></ul></div>
+<div class="card"><h2>Property spotlight</h2><div class="spot">[Listing image placeholder]</div><b>[Property name]</b><div style="color:var(--mut);font-size:13px">[Airport ID] · [Runway] · [Price: add real data]</div></div></div><br>
+<div class="grid g2"><div class="card"><h2>Content inspiration</h2><ul><li>“You’ve never seen a garage like this.”</li><li>“Would you trade your driveway for a taxiway?”</li><li>“Three hangar details buyers overlook.”</li><li>Video idea: walk from kitchen to runway in one take.</li></ul></div>
+<div class="card"><h2>Monthly goals &amp; performance</h2>${S.g.map((g,i)=>`<input value="${e(g)}" onchange="S.g[${i}]=this.value;save()" style="margin-bottom:6px">`).join('')}<div class="row" style="margin-top:8px;color:var(--mut)"><span>Reach ${sum('reach')}</span><span>Views ${sum('views')}</span><span>Comments ${sum('comments')}</span><span>Shares ${sum('shares')}</span><span>Saves ${sum('saves')}</span></div><div class="row" style="color:var(--mut)">Entered manually in each post.</div></div></div>`}
+const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function cal(){const d=V.d,y=d.getFullYear(),m=d.getMonth(),P=vis(),today=iso(new Date());
+const cell=(dt,lab)=>{const k=iso(dt);return`<div class="day ${k==today?'td':''}" ondragover="event.preventDefault()" ondrop="drop(event,'${k}')"><b>${lab}</b><button class="add" onclick="addPost('${k}')">+</button>${P.filter(p=>p.date==k).map(chip).join('')}</div>`};
+let body;if(V.mode=='month'){const off=(new Date(y,m,1).getDay()+6)%7,nd=new Date(y,m+1,0).getDate(),tot=Math.ceil((off+nd)/7)*7;body=`<div class="cal">${['Mon','Tue','Wed','Thu','Fri'].map(x=>`<div class="dh">${x}</div>`).join('')}${Array.from({length:tot},(_,i)=>i).filter(i=>i%7<5).map(i=>{const dd=i-off+1;return dd<1||dd>nd?'<div class="day off"></div>':cell(new Date(y,m,dd),dd)}).join('')}</div>`}
+else if(V.mode=='week'){const s=new Date(d);s.setDate(d.getDate()-(d.getDay()+6)%7);body=`<div class="wk"><div class="cal">${Array.from({length:5},(_,i)=>{const x=new Date(s);x.setDate(s.getDate()+i);return cell(x,['Mon','Tue','Wed','Thu','Fri'][i]+' '+x.getDate())}).join('')}</div></div>`}
+else body=`<div class="card">${P.filter(p=>pd(p.date).getMonth()==m&&pd(p.date).getFullYear()==y).map(p=>`<div class="item" onclick="edit('${p.id}')"><div style="width:110px"><b>${pd(p.date).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</b><div style="color:var(--mut);font-size:12px">${p.time}</div></div><div style="flex:1"><b>${e(p.topic)}</b><div style="margin-top:3px">${tag(p.cat)}${st(p.status)}<span style="color:var(--mut);font-size:12px">${PL[p.plat]} · ${FM[p.fmt]} · ${p.owner}</span></div></div></div>`).join('')||'<p style="color:var(--mut)">No posts this month.</p>'}</div>`;
+return`<div class="tool"><button class="btn" onclick="shift(-1)">‹</button><h2 style="min-width:0;font-size:26px">${V.mode=='week'?'Week of '+d.toLocaleDateString('en-US',{month:'short',day:'numeric'}):''}</h2><select onchange="V.d=new Date(${y},+this.value,1);render()">${MN.map((x,i)=>`<option value="${i}" ${i==m?'selected':''}>${x}</option>`).join('')}</select><select onchange="V.d=new Date(+this.value,${m},1);render()">${[2025,2026,2027,2028].map(x=>`<option ${x==y?'selected':''}>${x}</option>`).join('')}</select><button class="btn" onclick="shift(1)">›</button>${['month','week','list'].map(x=>`<button class="btn ${V.mode==x?'on':''}" onclick="V.mode='${x}';render()">${x[0].toUpperCase()+x.slice(1)}</button>`).join('')}<span class="sp"></span><button class="btn pri" onclick="addPost('${iso(new Date(y,m,1))}')">+ New post</button><button class="btn" onclick="csv()">Export CSV</button><button class="btn" onclick="window.print()">Print</button></div>
+<div class="tool"><input placeholder="Search posts…" value="${e(V.q)}" onchange="V.q=this.value;render()"><select onchange="V.c=this.value;render()"><option value="">All pillars</option>${Object.keys(CAT).map(c=>`<option value="${c}" ${V.c==c?'selected':''}>${CAT[c][0]}</option>`).join('')}</select><select onchange="V.pl=this.value;render()"><option value="">All platforms</option>${Object.keys(PL).map(c=>`<option value="${c}" ${V.pl==c?'selected':''}>${PL[c]}</option>`).join('')}</select><span style="font-size:12px;color:var(--mut)">Drag posts to move them. Gold outline = needs review.</span></div>${body}`}
+function shift(k){const d=V.d;V.d=V.mode=='week'?new Date(d.getFullYear(),d.getMonth(),d.getDate()+7*k):new Date(d.getFullYear(),d.getMonth()+k,1);render()}
+function drop(ev,k){ev.preventDefault();const p=byId(ev.dataTransfer.getData('t'));if(p){p.date=k;save();render()}}
+function lib(){const q=(V.lq||'').toLowerCase(),L=LIB.map((x,i)=>({...x,i})).filter(x=>(!V.lc||x.cat==V.lc)&&(!V.lp||x.plat==V.lp)&&(!V.lf||x.fmt==V.lf)&&(!q||(x.topic+x.hook+x.desc).toLowerCase().includes(q)));
+return`<div class="tool"><input placeholder="Search ${LIB.length} ideas…" value="${e(V.lq||'')}" onchange="V.lq=this.value;render()"><select onchange="V.lc=this.value;render()"><option value="">All pillars</option>${Object.keys(CAT).map(c=>`<option value="${c}" ${V.lc==c?'selected':''}>${CAT[c][0]}</option>`).join('')}</select><select onchange="V.lp=this.value;render()"><option value="">All platforms</option>${Object.keys(PL).map(c=>`<option value="${c}" ${V.lp==c?'selected':''}>${PL[c]}</option>`).join('')}</select><select onchange="V.lf=this.value;render()"><option value="">All formats</option>${Object.keys(FM).map(c=>`<option value="${c}" ${V.lf==c?'selected':''}>${FM[c]}</option>`).join('')}</select><span class="sp"></span><span style="color:var(--mut)">${L.length} ideas</span></div>
+<div class="grid g3">${L.map(x=>`<div class="card">${tag(x.cat)}<h3 style="font-size:22px;margin:8px 0 4px">${x.topic}</h3><div style="font-style:italic;color:var(--navy)">“${x.hook}”</div><p style="font-size:13px;color:var(--mut)">${x.desc}</p><div class="row"><span>${PL[x.plat]} · ${FM[x.fmt]}</span><button class="btn" onclick="addLib(${x.i})">Add to calendar</button></div></div>`).join('')}</div>`}
+function addLib(i){const x=LIB[i],y=V.d.getFullYear(),m=V.d.getMonth();open_(fill({date:wk(iso(new Date(y,m,1))),plat:x.plat,cat:x.cat,fmt:x.fmt,topic:x.topic,hook:x.hook,concept:x.desc+'.',time:'09:00',owner:'Team',status:'Idea'}),true)}
+function addPost(d){open_(fill({date:wk(d),plat:'F',cat:'E',fmt:'C',topic:'',time:'09:00',owner:'Team',status:'Idea'}),true)}
+function edit(id){open_({...byId(id)},false)}
+const O=o=>Object.entries(o).map(([k,v])=>[k,v]);
+const FL=[['date','Publication date','date'],['time','Publishing time','time'],['plat','Platform','s',O(PL)],['cat','Content pillar','s',Object.keys(CAT).map(k=>[k,CAT[k][0]])],['fmt','Format','s',O(FM)],['owner','Responsible','s',OW.map(x=>[x,x])],['status','Status','s',ST.map(x=>[x,x])],['topic','Post topic','w'],['hook','Hook','w'],['concept','Detailed post concept','t'],['visual','On-screen text / visual direction','t'],['caption','Suggested caption','t'],['tags','Hashtags','w'],['cta','Call to action','w'],['assets','Creative asset requirements','t'],['notes','Notes','t'],['feedback','Feedback from Tabitha &amp; Frank','t'],['reach','Reach'],['views','Views'],['comments','Comments'],['shares','Shares'],['saves','Saves'],['eng','Engagement rate %']];
+function open_(p,isNew){V.ed={p,isNew,del:0};const m=document.createElement('div');m.className='mo';m.id='mo';m.onclick=ev=>{if(ev.target==m)closeM()};
+m.innerHTML=`<div class="md"><h2 style="font-size:28px;margin-bottom:4px">${isNew?'New post':'Edit post'} <span style="font-size:14px;color:var(--mut)" id="dow"></span></h2><div class="fg">${FL.map(([k,l,t,o])=>`<div class="${t=='w'||t=='t'?'w':''}"><label>${l}</label>${t=='s'?`<select id="f_${k}">${o.map(([v,x])=>`<option value="${v}" ${p[k]==v?'selected':''}>${x}</option>`).join('')}</select>`:t=='t'?`<textarea id="f_${k}" rows="3">${e(p[k])}</textarea>`:`<input id="f_${k}" type="${t=='date'||t=='time'?t:'text'}" value="${e(p[k])}">`}</div>`).join('')}</div>
+<div class="tool" style="margin-top:16px"><button class="btn pri" onclick="saveM()">Save</button><button class="btn" onclick="setS('Submitted for Review')">Submit for review</button><button class="btn" onclick="setS('Changes Requested')">Request changes</button><button class="btn" onclick="setS('Approved')">Approve</button><span class="sp"></span><button class="btn" onclick="cp(g('caption')+'\\n\\n'+g('tags'))">Copy caption + tags</button>${isNew?'':`<button class="btn" onclick="dup()">Duplicate</button><button class="btn" id="del" onclick="del()">Delete</button>`}<button class="btn" onclick="closeM()">Close</button></div></div>`;document.body.appendChild(m)}
+const g=k=>$('#f_'+k).value,closeM=()=>{$('#mo')?.remove();V.ed=null};
+function read(){const p=V.ed.p;FL.forEach(([k])=>p[k]=g(k));return p}
+function setS(s){$('#f_status').value=s}
+function saveM(){const p=read();if(!p.topic.trim()){toast('Add a topic first');return}if(p.date&&wk(p.date)!=p.date){p.date=wk(p.date);toast('Weekends stay free: moved to Monday')}if(V.ed.isNew)S.p.push(p);else Object.assign(byId(p.id),p);save();closeM();render()}
+function dup(){const p=read();S.p.push({...p,id:uid(),topic:p.topic+' (copy)',status:'Idea'});save();closeM();render()}
+function del(){if(!V.ed.del){V.ed.del=1;$('#del').textContent='Confirm delete?';return}S.p=S.p.filter(x=>x.id!=V.ed.p.id);save();closeM();render()}
+document.addEventListener('keydown',ev=>{if(ev.key=='Escape')closeM()});
+document.addEventListener('input',ev=>{if(ev.target.id=='f_date'&&ev.target.value)$('#dow').textContent=pd(ev.target.value).toLocaleDateString('en-US',{weekday:'long'})});
+function fb(t){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(x){}a.remove()}
+function cp(t){try{navigator.clipboard.writeText(t).catch(()=>fb(t))}catch(x){fb(t)}toast('Copied')}
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1800)}
+function csv(){const K=['date','time','plat','cat','fmt','topic','hook','caption','tags','cta','owner','status','notes','feedback','reach','views','comments','shares','saves','eng'];
+const out=[K.join(',')].concat(vis().map(p=>K.map(k=>'"'+String(k=='plat'?PL[p[k]]:k=='cat'?CAT[p[k]][0]:k=='fmt'?FM[p[k]]:p[k]).replace(/"/g,'""')+'"').join(','))).join('\n');
+const m=document.createElement('div');m.className='mo';m.id='mo';m.onclick=ev=>{if(ev.target==m)closeM()};m.innerHTML=`<div class="md"><h2 style="font-size:26px">Export CSV</h2><p style="color:var(--mut)">Copy this into a .csv file or paste it into Excel or Google Sheets.</p><textarea id="cv" rows="12" readonly>${e(out)}</textarea><div class="tool" style="margin-top:10px"><button class="btn pri" onclick="cp($('#cv').value)">Copy CSV</button><button class="btn" onclick="closeM()">Close</button></div></div>`;document.body.appendChild(m)}
+render();
+</script></body></html>
